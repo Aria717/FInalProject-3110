@@ -73,4 +73,3 @@ let square_to_string = function
   let make_move board input =
     let start_pos, end_pos = parse_input input in
     move_piece board start_pos end_pos
-  
