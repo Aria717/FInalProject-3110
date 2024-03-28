@@ -1,0 +1,25 @@
+---
+# Members of your group.
+group:
+  - name: Aaradhyaa Gyawali
+    netid: ag2223
+
+# Your PM.
+pm:
+  name: Jonathan Ma
+  netid: jjm498
+# Set to false if you don't want your gallery entry to be public.
+publish: false
+# Pithy title
+title: "The Caml Chess"
+# OK if this is a Cornell Github link, but public gallery viewers won't be able to see it.
+git-repo: "https://github.com/Aria717/FinalProject-3110"
+# If you have no demo screencast, replace the url string with an empty string ""
+demo-video-url: ""
+# Write a short, attention-grabbing description of your project.
+desc: >
+  Our project is a chess game. It supports standard chess board and chess pieces.
+  It has standard operations like moving the pieces, a piece disappearing once it 
+  it is conqured by another piece. The interaction and rules are yet to be programmed.
+
+  More functionalities are underconstruction. 
