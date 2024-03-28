@@ -1,5 +1,3 @@
-(* board.ml *)
-
 type piece = Pawn | Knight | Bishop | Rook | Queen | King
 
 type color = White | Black
@@ -22,6 +20,7 @@ let initial_board =
   |]
 
 
+
   let piece_to_string = function
   | Pawn -> "P"
   | Knight -> "N"
@@ -30,14 +29,17 @@ let initial_board =
   | Queen -> "Q"
   | King -> "K"
 
+
 let color_to_string = function
   | White -> "W"
   | Black -> "B"
 
 
+
 let square_to_string = function
   | Empty -> " "
   | Occupied (piece, color) -> (color_to_string color) ^ (piece_to_string piece)
+
 
 
   let print_board board =
@@ -49,32 +51,25 @@ let square_to_string = function
     ) board
   
 
+
   let parse_input input =
     match String.split_on_char ' ' input with
     | [start_pos; end_pos] -> (start_pos, end_pos)
     | _ -> failwith "Invalid input format. Please provide start and end positions separated by a space."
   
-    (**
-        e2 e4 -> e - a = 4
-                8 - (2-1) = 8 - 1 = 7
-              e - a = 4
-              8 - (4 - 1) = 8 - 3 = 5  
 
-    *)
-
-
-
-    let move_piece board start_pos end_pos =
-      let start_col = int_of_char (Char.lowercase_ascii (String.get start_pos 0)) - int_of_char 'a' in
-      let start_row = 8 - (int_of_char (String.get start_pos 1) - int_of_char '0') in
-      let end_col = int_of_char (Char.lowercase_ascii (String.get end_pos 0)) - int_of_char 'a' in
-      let end_row = 8 - (int_of_char (String.get end_pos 1) - int_of_char '0') in
-      match board.(start_row).(start_col) with
-      | Occupied (piece, color) ->
-        board.(start_row).(start_col) <- Empty; (* Remove the piece from the start position *)
-        board.(end_row).(end_col) <- Occupied (piece, color)  (* Place the piece at the end position *)
-      | Empty -> invalid_arg "No piece at the starting position."
+  let move_piece board start_pos end_pos =
+    let start_col = int_of_char (Char.lowercase_ascii (String.get start_pos 0)) - int_of_char 'a' in
+    let start_row = 8 - (int_of_char (String.get start_pos 1) - int_of_char '0') in
+    let end_col = int_of_char (Char.lowercase_ascii (String.get end_pos 0)) - int_of_char 'a' in
+    let end_row = 8 - (int_of_char (String.get end_pos 1) - int_of_char '0') in
+    match board.(start_row).(start_col) with
+    | Occupied (piece, color) ->
+      board.(start_row).(start_col) <- Empty; (* Remove the piece from the start position *)
+      board.(end_row).(end_col) <- Occupied (piece, color)  (* Place the piece at the end position *)
+    | Empty -> invalid_arg "No piece at the starting position."
     
+  
   let make_move board input =
     let start_pos, end_pos = parse_input input in
     move_piece board start_pos end_pos
