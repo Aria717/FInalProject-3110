@@ -16,5 +16,23 @@
   (* Initialize the board *)
   Initialize other fields of game state *)
 
+(* Function to read user input *)
+let read_input () =
+  print_string "Enter your move (e.g., e2 e4): ";
+  read_line ()
+
+(* Function to execute moves until the user quits *)
+let rec play_moves_until_quit board =
+  print_board board;
+  let input = read_input () in
+  if input = "quit" then
+    print_endline "Quitting..."
+  else (
+    make_move board input;
+    play_moves_until_quit board
+  )
+
+(* Run the function *)
 let () =
-print_board initial_board
+  let my_board = Array.copy initial_board in
+  play_moves_until_quit my_board
